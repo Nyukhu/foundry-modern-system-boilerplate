@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./CharacterSheetApp.module.scss";
 
 const modifier = (score: number) => Math.floor((score - 10) / 2);
@@ -7,6 +7,7 @@ const fmtMod = (mod: number) => (mod >= 0 ? `+${mod}` : `${mod}`);
 export function CharacterSheetApp({ actor }: { actor: Actor.Implementation }) {
   const system = actor.system;
   const attrs = system.attributes;
+  const [chatMessage, setChatMessage] = useState("");
 
   const updateAttribute = (key: "strength" | "agility" | "spirit", value: number) => {
     actor.update({ system: { attributes: { [key]: value } } });
@@ -14,6 +15,15 @@ export function CharacterSheetApp({ actor }: { actor: Actor.Implementation }) {
 
   const updateBiography = (value: string) => {
     actor.update({ system: { biography: value } });
+  };
+
+  const sendChatMessage = () => {
+    if (!chatMessage.trim()) return;
+    ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor }),
+      content: chatMessage
+    });
+    setChatMessage("");
   };
 
   // derived purely from current doc state — recomputed every render, no local state needed
@@ -47,6 +57,19 @@ export function CharacterSheetApp({ actor }: { actor: Actor.Implementation }) {
           onBlur={(e) => updateBiography(e.target.value)}
         />
       </label>
+
+      <div className={styles.chatRow}>
+        <input
+          type="text"
+          placeholder="Say something..."
+          value={chatMessage}
+          onChange={(e) => setChatMessage(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendChatMessage()}
+        />
+        <button type="button" onClick={sendChatMessage}>
+          Send to chat
+        </button>
+      </div>
     </div>
   );
 }
