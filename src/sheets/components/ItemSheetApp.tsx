@@ -1,15 +1,15 @@
 import React from "react";
 import styles from "./ItemSheetApp.module.scss";
 
-export function ItemSheetApp({ item }: { item: any }) {
+export function ItemSheetApp({ item }: { item: Item.Implementation }) {
   const system = item.system;
 
   const updateQuantity = (value: number) => {
-    item.update({ "system.quantity": value });
+    item.update({ system: { quantity: value } });
   };
 
   const updateDescription = (value: string) => {
-    item.update({ "system.description": value });
+    item.update({ system: { description: value } });
   };
 
   return (

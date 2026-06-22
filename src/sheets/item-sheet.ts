@@ -10,22 +10,25 @@ export class ItemSheet extends foundry.applications.sheets.ItemSheetV2 {
 
   #root: Root | null = null;
 
-  async _prepareContext(_options: unknown) {
-    return { document: this.document };
+  override async _renderHTML(
+    ...args: Parameters<foundry.applications.sheets.ItemSheetV2["_renderHTML"]>
+  ) {
+    return args[0];
   }
 
-  async _renderHTML(context: unknown, _options: unknown) {
-    return context;
-  }
-
-  _replaceHTML(_result: unknown, content: HTMLElement, _options: unknown) {
+  override _replaceHTML(
+    ...args: Parameters<foundry.applications.sheets.ItemSheetV2["_replaceHTML"]>
+  ) {
+    const content = args[1];
     if (!this.#root) this.#root = createRoot(content);
     this.#root.render(React.createElement(ItemSheetApp, { item: this.document }));
   }
 
-  async close(options: unknown) {
+  override async close(
+    ...args: Parameters<foundry.applications.sheets.ItemSheetV2["close"]>
+  ) {
     this.#root?.unmount();
     this.#root = null;
-    return super.close(options);
+    return super.close(...args);
   }
 }

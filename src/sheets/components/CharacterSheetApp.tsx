@@ -4,16 +4,16 @@ import styles from "./CharacterSheetApp.module.scss";
 const modifier = (score: number) => Math.floor((score - 10) / 2);
 const fmtMod = (mod: number) => (mod >= 0 ? `+${mod}` : `${mod}`);
 
-export function CharacterSheetApp({ actor }: { actor: any }) {
+export function CharacterSheetApp({ actor }: { actor: Actor.Implementation }) {
   const system = actor.system;
   const attrs = system.attributes;
 
-  const updateAttribute = (key: string, value: number) => {
-    actor.update({ [`system.attributes.${key}`]: value });
+  const updateAttribute = (key: "strength" | "agility" | "spirit", value: number) => {
+    actor.update({ system: { attributes: { [key]: value } } });
   };
 
   const updateBiography = (value: string) => {
-    actor.update({ "system.biography": value });
+    actor.update({ system: { biography: value } });
   };
 
   // derived purely from current doc state — recomputed every render, no local state needed
