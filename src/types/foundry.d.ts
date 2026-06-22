@@ -9,3 +9,8 @@ declare const game: any;
 declare const foundry: any;
 declare const Actor: any;
 declare const Item: any;
+
+declare module "*.module.scss" {
+  const classes: { readonly [key: string]: string };
+  export default classes;
+}

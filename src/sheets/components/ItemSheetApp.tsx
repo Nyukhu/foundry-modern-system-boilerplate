@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./ItemSheetApp.module.scss";
 
 export function ItemSheetApp({ item }: { item: any }) {
   const system = item.system;
@@ -12,9 +13,9 @@ export function ItemSheetApp({ item }: { item: any }) {
   };
 
   return (
-    <div className="newsystem item-sheet">
+    <div className={styles.sheet}>
       <h1>{item.name}</h1>
-      <label>
+      <label className={styles.label}>
         Quantity
         <input
           type="number"
@@ -23,7 +24,7 @@ export function ItemSheetApp({ item }: { item: any }) {
           onChange={(e) => updateQuantity(Number(e.target.value))}
         />
       </label>
-      <label>
+      <label className={styles.label}>
         Description
         <textarea
           defaultValue={system.description}

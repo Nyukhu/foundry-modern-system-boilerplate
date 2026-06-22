@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./CharacterSheetApp.module.scss";
 
 const modifier = (score: number) => Math.floor((score - 10) / 2);
 const fmtMod = (mod: number) => (mod >= 0 ? `+${mod}` : `${mod}`);
@@ -20,26 +21,26 @@ export function CharacterSheetApp({ actor }: { actor: any }) {
   const totalMod = modifier(attrs.strength) + modifier(attrs.agility) + modifier(attrs.spirit);
 
   return (
-    <div className="newsystem character-sheet">
+    <div className={styles.sheet}>
       <h1>{actor.name}</h1>
-      <div className="attributes">
+      <div className={styles.attributes}>
         {(["strength", "agility", "spirit"] as const).map((key) => (
-          <label key={key}>
+          <label className={styles.attributeLabel} key={key}>
             {key}
             <input
               type="number"
               value={attrs[key]}
               onChange={(e) => updateAttribute(key, Number(e.target.value))}
             />
-            <span className="modifier">{fmtMod(modifier(attrs[key]))}</span>
+            <span className={styles.modifier}>{fmtMod(modifier(attrs[key]))}</span>
           </label>
         ))}
       </div>
-      <div className="totals">
+      <div className={styles.totals}>
         <span>Total: {total}</span>
         <span>Total mod: {fmtMod(totalMod)}</span>
       </div>
-      <label>
+      <label className={styles.attributeLabel}>
         Biography
         <textarea
           defaultValue={system.biography}

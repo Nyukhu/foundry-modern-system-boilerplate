@@ -1,4 +1,3 @@
-import "./styles/main.css";
 import { CharacterData } from "./data/character-data";
 import { ItemData } from "./data/item-data";
 import { CharacterSheet } from "./sheets/character-sheet";

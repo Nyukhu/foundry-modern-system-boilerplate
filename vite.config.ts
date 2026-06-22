@@ -6,6 +6,11 @@ export default defineConfig({
   define: {
     "process.env.NODE_ENV": JSON.stringify("production")
   },
+  css: {
+    preprocessorOptions: {
+      scss: { api: "modern-compiler" }
+    }
+  },
   build: {
     outDir: "dist",
     emptyOutDir: true,
