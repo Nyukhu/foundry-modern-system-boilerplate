@@ -1,0 +1,55 @@
+{
+  "id": "newsystem",
+  "version": "0.8.2",
+  "title": "Newsystem",
+  "url": "",
+  "description": "First edition of Newsystem",
+  "license": "LICENSE.txt",
+  "authors": [
+    {
+      "name": "Nyukhu",
+      "url": "https://foundryvtt.com",
+      "flags": {}
+    }
+  ],
+  "esmodules": [
+    "dist/system.mjs"
+  ],
+  "styles": [
+    "dist/style.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    },
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json",
+      "flags": {}
+    }
+  ],
+  "documentTypes": {
+    "Actor": {
+      "character": {}
+    },
+    "Item": {
+      "item": {}
+    }
+  },
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power",
+  "manifest": "",
+  "download": "",
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  }
+}

@@ -1,0 +1,30 @@
+.newsystem.character-sheet,
+.newsystem.item-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.newsystem .attributes {
+  display: flex;
+  gap: 1rem;
+}
+
+.newsystem label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.newsystem .modifier {
+  font-weight: bold;
+  text-align: center;
+}
+
+.newsystem .totals {
+  display: flex;
+  gap: 1rem;
+  font-weight: bold;
+}
